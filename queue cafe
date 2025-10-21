@@ -1,0 +1,57 @@
+class Pengunjung:
+    def __init__(self, nama, nomor_meja, pesanan):
+        self.nama = nama
+        self.nomor_meja = nomor_meja
+        self.pesanan = pesanan
+
+    def __str__(self):
+        return (f"Pengunjung(Nama={self.nama}, Meja={self.nomor_meja}, "
+                f"Pesanan={self.pesanan})")
+
+class QueueCafe:
+    def __init__(self):
+        self._antrian = []
+
+    def masuk_antrian(self, pengunjung: Pengunjung):
+        print(f"--> Pengunjung masuk: {pengunjung}")
+        self._antrian.append(pengunjung)
+
+    def selesai_dilayani(self):
+        if self.is_empty():
+            print("--> Tidak ada pengunjung dalam antrian.")
+            return None
+        pengunjung = self._antrian.pop(0)
+        print(f"<-- Pengunjung selesai dan keluar: {pengunjung}")
+        return pengunjung
+
+    def is_empty(self):
+        return len(self._antrian) == 0
+
+    def size(self):
+        return len(self._antrian)
+
+    def tampilkan_antrian(self):
+        print("Antrian pengunjung sekarang:")
+        for idx, p in enumerate(self._antrian, start=1):
+            print(f"  {idx}. {p}")
+
+def main():
+    q = QueueCafe()
+
+    q.masuk_antrian(Pengunjung("Eka", 1, ["Kopi", "Cake"]))
+    q.masuk_antrian(Pengunjung("Farah", 2, ["Teh", "Cookies"]))
+    q.masuk_antrian(Pengunjung("Gilang", 3, ["Jus", "Sandwich"]))
+    q.tampilkan_antrian()
+
+    q.selesai_dilayani()
+    q.tampilkan_antrian()
+
+    q.masuk_antrian(Pengunjung("Hana", 4, ["Latte"]))
+    q.tampilkan_antrian()
+
+    while not q.is_empty():
+        q.selesai_dilayani()
+    q.tampilkan_antrian()
+
+if __name__ == "__main__":
+    main()
