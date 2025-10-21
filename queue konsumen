@@ -1,0 +1,55 @@
+class Konsumen:
+    def __init__(self, nama, id_konsumen):
+        self.nama = nama
+        self.id_konsumen = id_konsumen
+
+    def __str__(self):
+        return f"Konsumen(ID={self.id_konsumen}, Nama={self.nama})"
+
+class QueueKonsumen:
+    def __init__(self):
+        self._antrian = []
+
+    def enqueue(self, konsumen: Konsumen):
+        print(f"--> Masuk antrian: {konsumen}")
+        self._antrian.append(konsumen)
+
+    def dequeue(self):
+        if self.is_empty():
+            print("--> Antrian kosong, tidak ada yang bisa keluar.")
+            return None
+        konsumen = self._antrian.pop(0)
+        print(f"<-- Keluar antrian: {konsumen}")
+        return konsumen
+
+    def is_empty(self):
+        return len(self._antrian) == 0
+
+    def size(self):
+        return len(self._antrian)
+
+    def tampilkan_antrian(self):
+        print("Antrian sekarang:")
+        for idx, k in enumerate(self._antrian, start=1):
+            print(f"  {idx}. {k}")
+
+def main():
+    q = QueueKonsumen()
+
+    q.enqueue(Konsumen("Alice", 101))
+    q.enqueue(Konsumen("Bob", 102))
+    q.enqueue(Konsumen("Charlie", 103))
+    q.tampilkan_antrian()
+
+    q.dequeue()
+    q.tampilkan_antrian()
+
+    q.enqueue(Konsumen("Diana", 104))
+    q.tampilkan_antrian()
+
+    while not q.is_empty():
+        q.dequeue()
+    q.tampilkan_antrian()
+
+if __name__ == "__main__":
+    main()
