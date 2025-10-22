@@ -14,10 +14,6 @@ Tugas ini mencakup beberapa simulasi sesuai instruksi dosen, khususnya **soal no
 
 ---
 
-## ⚙️ Cara Menjalankan Program
-
-Pastikan Python sudah terinstal di komputer kamu.  
-Kamu bisa menjalankan setiap program melalui terminal / command prompt.
 
 ### 1️⃣ Jalankan program **queue konsumen**
 ```bash
